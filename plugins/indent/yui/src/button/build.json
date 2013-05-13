@@ -1,0 +1,10 @@
+{
+  "name": "moodle-contenteditable_indent-button",
+  "builds": {
+    "moodle-contenteditable_indent-button": {
+      "jsfiles": [
+        "button.js"
+      ]
+    }
+  }
+}

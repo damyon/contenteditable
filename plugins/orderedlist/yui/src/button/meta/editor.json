@@ -1,0 +1,5 @@
+{
+  "moodle-contenteditable_orderedlist-button": {
+    "requires": ["node"]
+  }
+}

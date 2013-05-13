@@ -1,0 +1,5 @@
+{
+  "moodle-contenteditable_indent-button": {
+    "requires": ["node"]
+  }
+}

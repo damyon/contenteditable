@@ -1,0 +1,5 @@
+{
+  "moodle-contenteditable_underline-button": {
+    "requires": ["node"]
+  }
+}

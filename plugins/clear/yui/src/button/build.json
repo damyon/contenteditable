@@ -1,0 +1,10 @@
+{
+  "name": "moodle-contenteditable_clear-button",
+  "builds": {
+    "moodle-contenteditable_clear-button": {
+      "jsfiles": [
+        "button.js"
+      ]
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "name": "moodle-contenteditable_bold-button",
+  "builds": {
+    "moodle-contenteditable_bold-button": {
+      "jsfiles": [
+        "button.js"
+      ]
+    }
+  }
+}

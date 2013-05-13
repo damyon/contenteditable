@@ -1,0 +1,10 @@
+{
+  "name": "moodle-contenteditable_unorderedlist-button",
+  "builds": {
+    "moodle-contenteditable_unorderedlist-button": {
+      "jsfiles": [
+        "button.js"
+      ]
+    }
+  }
+}

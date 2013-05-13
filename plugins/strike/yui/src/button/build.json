@@ -1,0 +1,10 @@
+{
+  "name": "moodle-contenteditable_strike-button",
+  "builds": {
+    "moodle-contenteditable_strike-button": {
+      "jsfiles": [
+        "button.js"
+      ]
+    }
+  }
+}

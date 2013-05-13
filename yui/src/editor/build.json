@@ -1,0 +1,10 @@
+{
+  "name": "moodle-editor_contenteditable-editor",
+  "builds": {
+    "moodle-editor_contenteditable-editor": {
+      "jsfiles": [
+        "editor.js"
+      ]
+    }
+  }
+}

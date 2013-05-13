@@ -1,0 +1,5 @@
+{
+  "moodle-contenteditable_italic-button": {
+    "requires": ["node"]
+  }
+}

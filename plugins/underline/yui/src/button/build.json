@@ -1,0 +1,10 @@
+{
+  "name": "moodle-contenteditable_underline-button",
+  "builds": {
+    "moodle-contenteditable_underline-button": {
+      "jsfiles": [
+        "button.js"
+      ]
+    }
+  }
+}

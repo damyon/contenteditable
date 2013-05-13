@@ -1,0 +1,28 @@
+div.editor_contenteditable {
+    background-color: white;
+    border: 1px solid #444;
+}
+
+div.editor_contenteditable_toolbar {
+    display: block;
+}
+
+div.editor_contenteditable_toolbar button {
+    padding: 1px;
+}
+div.editor_contenteditable_toolbar button img {
+    padding: 1px;
+}
+
+div.editor_contenteditable_toolbar button.contenteditable_strike_button,
+div.editor_contenteditable_toolbar button.contenteditable_unorderedlist_button,
+div.editor_contenteditable_toolbar button.contenteditable_indent_button {
+    margin-right: 1em;
+}
+body.dir-rtl div.editor_contenteditable_toolbar button.contenteditable_strike_button,
+body.dir-rtl div.editor_contenteditable_toolbar button.contenteditable_unorderedlist_button,
+body.dir-rtl div.editor_contenteditable_toolbar button.contenteditable_indent_button {
+    margin-right: 0px;
+    margin-left: 1em;
+}
+

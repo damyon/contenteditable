@@ -1,0 +1,10 @@
+{
+  "name": "moodle-contenteditable_outdent-button",
+  "builds": {
+    "moodle-contenteditable_outdent-button": {
+      "jsfiles": [
+        "button.js"
+      ]
+    }
+  }
+}
