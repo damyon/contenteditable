@@ -7,18 +7,7 @@ INDENT.ATTRS = {};
 
 Y.extend(INDENT, Y.Base, {
     initializer : function(params) {
-        var toolbar = Y.one('#' + params.elementid + '_toolbar');
-        var button = Y.Node.create('<button class="contenteditable_indent_button" data-editor="' + params.elementid + '">' +
-                                    params.icon +
-                                    '</button>');
-
-        toolbar.append(button);
-
-        // We only need to attach this once.
-        if (!M.contenteditable_indent.attached) {
-            Y.one('body').delegate('click', this.click, '.contenteditable_indent_button');
-            M.contenteditable_indent.attached = true;
-        }
+        M.editor_contenteditable.add_toolbar_button(params.elementid, 'indent', params.icon, this.click);
     },
 
     click : function(e) {

@@ -51,5 +51,35 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(0,-1036.3622)" />
+     transform="translate(0,-1036.3622)">
+    <g
+       id="g3756"
+       transform="translate(0,-0.44194174)">
+      <rect
+         ry="0"
+         transform="translate(0,1036.3622)"
+         y="2.3629408"
+         x="7.0079331"
+         height="5.3664355"
+         width="2.0203052"
+         id="rect2982"
+         style="fill:#999999;fill-opacity:1;stroke:#999999;stroke-width:1;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0" />
+      <rect
+         ry="0.4152233"
+         y="1043.2078"
+         x="3.9774756"
+         height="2.7870839"
+         width="8.0812302"
+         id="rect2984"
+         style="fill:#999999;fill-opacity:1;stroke:#999999;stroke-width:0.82672101;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0" />
+      <rect
+         ry="0.053281363"
+         y="1045.6699"
+         x="4.4825521"
+         height="3.1562684"
+         width="7.0079417"
+         id="rect3754"
+         style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:#999999;stroke-width:1;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0" />
+    </g>
+  </g>
 </svg>

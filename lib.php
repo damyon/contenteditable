@@ -98,6 +98,7 @@ class contenteditable_texteditor extends texteditor {
             component_callback($plugin->type . '_' . $plugin->name, 'init_editor', array($elementid));
         }
 
+
         // Note: use full moodle_url instance to prevent standard JS loader, make sure we are using https on profile page if required.
         /*
         if (debugging('', DEBUG_DEVELOPER)) {

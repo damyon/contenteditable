@@ -1,15 +1,33 @@
 YUI.add('moodle-editor_contenteditable-editor', function (Y, NAME) {
 
-var CONTENTEDITABLE = function() {
-    CONTENTEDITABLE.superclass.constructor.apply(this, arguments);
-};
+M.editor_contenteditable = M.editor_contenteditable || {
+    /**
+     * List of attached button handlers to prevent duplicates.
+     */
+    buttonhandlers : {},
+    /**
+     * Add a button to the toolbar belonging to the editor for element with id "elementid".
+     * @param string elementid - the id of the textarea we created this editor from.
+     * @param string plugin - the plugin defining the button
+     * @param string icon - the html used for the content of the button
+     * @handler function handler- A function to call when the button is clicked.
+     */
+    add_toolbar_button : function(elementid, plugin, icon, handler) {
+        var toolbar = Y.one('#' + elementid + '_toolbar');
+        var button = Y.Node.create('<button class="contenteditable_' + plugin + '_button" data-editor="' + elementid + '">' +
+                                    icon +
+                                    '</button>');
 
-CONTENTEDITABLE.NAME = 'editor_contenteditable';
-CONTENTEDITABLE.ATTRS = {};
+        toolbar.append(button);
 
-Y.extend(CONTENTEDITABLE, Y.Base, {
+        // We only need to attach this once.
+        if (!M.editor_contenteditable.buttonhandlers[plugin]) {
+            Y.one('body').delegate('click', handler, '.contenteditable_' + plugin + '_button');
+            M.editor_contenteditable.buttonhandlers[plugin] = true;
+        }
+    },
 
-    initializer : function(params) {
+    init : function(params) {
         var textarea = Y.one('#' +params.elementid);
         var contenteditable = Y.Node.create('<div id="' + params.elementid + 'editable" ' +
                                             'contenteditable="true" ' +
@@ -44,16 +62,20 @@ Y.extend(CONTENTEDITABLE, Y.Base, {
 
     },
 
-    add_separator : function(params) {
-        Y.log(params);
+    get_selection : function() {
+        var sel = window.getSelection();
+        return sel.getRangeAt(0);
+    },
+
+    set_selection : function(selection) {
+        var sel;
+
+        sel = window.getSelection();
+        sel.removeAllRanges();
+        sel.addRange(selection);
     }
-
-});
-
-M.editor_contenteditable = M.editor_contenteditable || {};
-M.editor_contenteditable.init = function(id, params) {
-    return new CONTENTEDITABLE(id, params);
 };
+
 
 
 }, '@VERSION@', {"requires": ["node", "io"]});

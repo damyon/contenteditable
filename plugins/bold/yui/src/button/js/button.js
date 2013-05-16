@@ -7,18 +7,7 @@ BOLD.ATTRS = {};
 
 Y.extend(BOLD, Y.Base, {
     initializer : function(params) {
-        var toolbar = Y.one('#' + params.elementid + '_toolbar');
-        var button = Y.Node.create('<button class="contenteditable_bold_button" data-editor="' + params.elementid + '">' +
-                                    params.icon +
-                                    '</button>');
-
-        toolbar.append(button);
-
-        // We only need to attach this once.
-        if (!M.contenteditable_bold.attached) {
-            Y.one('body').delegate('click', this.click, '.contenteditable_bold_button');
-            M.contenteditable_bold.attached = true;
-        }
+        M.editor_contenteditable.add_toolbar_button(params.elementid, 'bold', params.icon, this.click);
     },
 
     click : function(e) {
