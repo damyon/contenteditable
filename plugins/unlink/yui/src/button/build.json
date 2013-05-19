@@ -1,0 +1,10 @@
+{
+  "name": "moodle-contenteditable_unlink-button",
+  "builds": {
+    "moodle-contenteditable_unlink-button": {
+      "jsfiles": [
+        "button.js"
+      ]
+    }
+  }
+}

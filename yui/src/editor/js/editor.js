@@ -4,6 +4,11 @@ M.editor_contenteditable = M.editor_contenteditable || {
      */
     buttonhandlers : {},
     /**
+     * List of file picker options for specific editor instances.
+     */
+    filepickeroptions : {},
+
+    /**
      * Add a button to the toolbar belonging to the editor for element with id "elementid".
      * @param string elementid - the id of the textarea we created this editor from.
      * @param string plugin - the plugin defining the button
@@ -12,7 +17,7 @@ M.editor_contenteditable = M.editor_contenteditable || {
      */
     add_toolbar_button : function(elementid, plugin, icon, handler) {
         var toolbar = Y.one('#' + elementid + '_toolbar');
-        var button = Y.Node.create('<button class="contenteditable_' + plugin + '_button" data-editor="' + elementid + '">' +
+        var button = Y.Node.create('<button class="contenteditable_' + plugin + '_button" data-editor="' + Y.Escape.html(elementid) + '">' +
                                     icon +
                                     '</button>');
 
@@ -58,19 +63,54 @@ M.editor_contenteditable = M.editor_contenteditable || {
             textarea.set('value', contenteditable.getHTML());
         });
 
+        // Save the file picker options for later.
+        M.editor_contenteditable.filepickeroptions[params.elementid] = params.filepickeroptions;
+    },
+
+    show_filepicker : function(elementid, type, callback) {
+        Y.use('core_filepicker', function (Y) {
+            var options = M.editor_contenteditable.filepickeroptions[elementid][type];
+
+            options.formcallback = callback;
+            options.editor_target = Y.one(elementid);
+
+            M.core_filepicker.show(Y, options);
+        });
     },
 
     get_selection : function() {
-        var sel = window.getSelection();
-        return sel.getRangeAt(0);
+        if (window.getSelection) {
+            var sel = window.getSelection();
+            var ranges = [], i = 0;
+            for (i = 0; i < sel.rangeCount; i++) {
+                ranges.push(sel.getRangeAt(i));
+            }
+            return ranges;
+        } else if (document.selection) {
+            // IE < 9
+            if (document.selection.createRange) {
+                return document.selection.createRange();
+            }
+        }
+        return false;
     },
 
     set_selection : function(selection) {
-        var sel;
+        var sel, i;
 
-        sel = window.getSelection();
-        sel.removeAllRanges();
-        sel.addRange(selection);
+        if (window.getSelection) {
+            sel = window.getSelection();
+            sel.removeAllRanges();
+            for (i = 0; i < selection.length; i++) {
+                sel.addRange(selection[i]);
+            }
+        } else if (document.selection) {
+            // IE < 9
+            if (selection.select) {
+                selection.select();
+            }
+        }
     }
+
 };
 

@@ -28,7 +28,7 @@ function contenteditable_link_init_editor($elementid) {
 
     $icon = $OUTPUT->pix_icon('link', get_string('link', 'contenteditable_link'), 'contenteditable_link', array('class'=>'icon'));
 
-    $PAGE->requires->strings_for_js(array('createlink', 'url'), 'contenteditable_link');
+    $PAGE->requires->strings_for_js(array('createlink', 'enterurl', 'browserepositories', 'accessibilityhint'), 'contenteditable_link');
 
     $PAGE->requires->yui_module('moodle-contenteditable_link-button',
                                 'M.contenteditable_link.init',

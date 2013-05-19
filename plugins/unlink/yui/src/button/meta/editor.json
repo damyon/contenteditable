@@ -1,0 +1,5 @@
+{
+  "moodle-contenteditable_unlink-button": {
+    "requires": ["node"]
+  }
+}

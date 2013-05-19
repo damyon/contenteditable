@@ -81,7 +81,7 @@ class contenteditable_texteditor extends texteditor {
         global $PAGE, $CFG;
         $PAGE->requires->yui_module('moodle-editor_contenteditable-editor',
                                     'M.editor_contenteditable.init', 
-                                    array($this->get_init_params($elementid, $options)), true);
+                                    array($this->get_init_params($elementid, $options, $fpoptions)), true);
 
         $pluginman = plugin_manager::instance();
         $plugins = $pluginman->get_subplugins_of_plugin('editor_contenteditable');
@@ -107,14 +107,11 @@ class contenteditable_texteditor extends texteditor {
             $PAGE->requires->js(new moodle_url($CFG->httpswwwroot.'/lib/editor/tinymce/tiny_mce/'.$this->version.'/tiny_mce.js'));
         }
         $PAGE->requires->js_init_call('M.editor_tinymce.init_editor', array($elementid, $this->get_init_params($elementid, $options)), true);
-        if ($fpoptions) {
-            $PAGE->requires->js_init_call('M.editor_tinymce.init_filepicker', array($elementid, $fpoptions), true);
-        }
         $this->initialise_collapse_js();
         */
     }
 
-    protected function get_init_params($elementid, array $options=null) {
+    protected function get_init_params($elementid, array $options=null, array $fpoptions=null) {
         global $CFG, $PAGE, $OUTPUT;
 
         //TODO: we need to implement user preferences that affect the editor setup too
@@ -137,8 +134,12 @@ class contenteditable_texteditor extends texteditor {
             'elementid' => $elementid,
             'content_css' => $contentcss,
             'language' => $lang,
-            'directionality' => $directionality
+            'directionality' => $directionality,
+            'filepickeroptions' => array()
         );
+        if ($fpoptions) {
+            $params['filepickeroptions'] = $fpoptions;
+        }
         return $params;
     }
 }

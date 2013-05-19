@@ -15,17 +15,16 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Strings for component 'contenteditable_link', language 'en'.
+ * Content editable text editor integration version file.
  *
- * @package    contenteditable_link
+ * @package    contenteditable_unlink
  * @copyright  1999 onwards Martin Dougiamas  {@link http://moodle.com}
+ * @author Damyon Wiese <damyon@moodle.com>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+defined('MOODLE_INTERNAL') || die();
 
-$string['pluginname'] = 'Link';
-$string['link'] = 'Link';
-$string['createlink'] = 'Create link';
-$string['enterurl'] = 'Enter a URL';
-$string['browserepositories'] = 'Browse repositories...';
-$string['accessibilityhint'] = '<p>Relevant web content accessibility guideline (WCAG) links:<br/><ul><li><a href="http://www.w3.org/TR/WCAG20/#navigation-mechanisms-refs" target="_blank">2.4.4 Link Purpose (In Context)</a></li><li><a href="http://www.w3.org/TR/WCAG20/#navigation-mechanisms-link" target="_blank">2.4.9 Link Purpose (Link Only)</a></li></ul></p>';
+$plugin->version   = 2013050100;        // The current plugin version (Date: YYYYMMDDXX)
+$plugin->requires  = 2013050100;        // Requires this Moodle version
+$plugin->component = 'contenteditable_unlink';  // Full name of the plugin (used for diagnostics)
