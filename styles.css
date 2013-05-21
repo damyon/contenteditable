@@ -26,3 +26,7 @@ body.dir-rtl div.editor_contenteditable_toolbar button.contenteditable_indent_bu
     margin-left: 1em;
 }
 
+div.editor_contenteditable img {
+    resize: both; overflow: auto;
+
+}

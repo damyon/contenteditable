@@ -1,0 +1,10 @@
+{
+  "name": "moodle-contenteditable_image-button",
+  "builds": {
+    "moodle-contenteditable_image-button": {
+      "jsfiles": [
+        "button.js"
+      ]
+    }
+  }
+}
