@@ -5,6 +5,9 @@ M.contenteditable_image = M.contenteditable_image || {
         var display_chooser = function(e) {
             var elementid = this.getAttribute('data-editor');
             e.preventDefault();
+            if (!M.editor_contenteditable.is_active(elementid)) {
+                return;
+            }
             M.contenteditable_image.selection = M.editor_contenteditable.get_selection();
             if (M.contenteditable_image.selection !== false) {
                 var dialogue = new M.core.dialogue({
@@ -90,12 +93,12 @@ M.contenteditable_image = M.contenteditable_image || {
                              '</label><br/>' +
                              '<input type="text" value="" id="heightentry" size="10"/>' +
                              '<br/>' +
-                             '<button id="urlentrysubmit">' +
-                             M.util.get_string('createimage', 'contenteditable_image') +
-                             '</button>' +
-                             '<hr/>' +
                              '<button id="openimagebrowser" data-editor="' + Y.Escape.html(elementid) + '">' +
                              M.util.get_string('browserepositories', 'contenteditable_image') +
+                             '</button>' +
+                             '<hr/>' +
+                             '<button id="urlentrysubmit">' +
+                             M.util.get_string('createimage', 'contenteditable_image') +
                              '</button>' +
                              '</form>' +
                              '<hr/>' + M.util.get_string('accessibilityhint', 'contenteditable_image'));

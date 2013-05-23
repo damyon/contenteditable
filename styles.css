@@ -9,6 +9,7 @@ div.editor_contenteditable_toolbar {
 
 div.editor_contenteditable_toolbar button {
     padding: 1px;
+    padding: 3px;
 }
 div.editor_contenteditable_toolbar button img {
     padding: 1px;
@@ -16,11 +17,13 @@ div.editor_contenteditable_toolbar button img {
 
 div.editor_contenteditable_toolbar button.contenteditable_strike_button,
 div.editor_contenteditable_toolbar button.contenteditable_unorderedlist_button,
+div.editor_contenteditable_toolbar button.contenteditable_clear_button,
 div.editor_contenteditable_toolbar button.contenteditable_indent_button {
     margin-right: 1em;
 }
 body.dir-rtl div.editor_contenteditable_toolbar button.contenteditable_strike_button,
 body.dir-rtl div.editor_contenteditable_toolbar button.contenteditable_unorderedlist_button,
+body.dir-rtl div.editor_contenteditable_toolbar button.contenteditable_clear_button,
 body.dir-rtl div.editor_contenteditable_toolbar button.contenteditable_indent_button {
     margin-right: 0px;
     margin-left: 1em;
@@ -28,5 +31,5 @@ body.dir-rtl div.editor_contenteditable_toolbar button.contenteditable_indent_bu
 
 div.editor_contenteditable img {
     resize: both; overflow: auto;
-
 }
+

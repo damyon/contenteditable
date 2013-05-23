@@ -32,6 +32,20 @@ M.editor_contenteditable = M.editor_contenteditable || {
         }
     },
 
+    is_active : function(elementid) {
+        var selection = M.editor_contenteditable.get_selection();
+
+        if (selection.length) {
+            selection = selection.pop();
+        }
+
+        var node = Y.one(selection.startContainer);
+
+        // TODO - make work on ie
+
+        return node && node.ancestor('#' + elementid + 'editable') !== null;
+    },
+
     init : function(params) {
         var textarea = Y.one('#' +params.elementid);
         var contenteditable = Y.Node.create('<div id="' + params.elementid + 'editable" ' +

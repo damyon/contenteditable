@@ -6,8 +6,11 @@ M.contenteditable_link = M.contenteditable_link || {
         var display_chooser = function(e) {
             var elementid = this.getAttribute('data-editor');
             e.preventDefault();
+            if (!M.editor_contenteditable.is_active(elementid)) {
+                return;
+            }
             M.contenteditable_link.selection = M.editor_contenteditable.get_selection();
-            if (M.contenteditable_link.selection !== false) {
+            if (M.contenteditable_link.selection !== false && (M.contenteditable_link.selection + '') !== '') {
                 var dialogue = new M.core.dialogue({
                     visible: false,
                     modal: true,
@@ -55,12 +58,12 @@ M.contenteditable_link = M.contenteditable_link || {
                              '<label for="urlentry">' + M.util.get_string('enterurl', 'contenteditable_link') +
                              '</label><br/>' +
                              '<input type="url" value="" id="urlentry" size="64"/>' +
-                             '<button id="urlentrysubmit">' +
-                             M.util.get_string('createlink', 'contenteditable_link') +
-                             '</button>' +
-                             '<hr/>' +
                              '<button id="openlinkbrowser" data-editor="' + Y.Escape.html(elementid) + '">' +
                              M.util.get_string('browserepositories', 'contenteditable_link') +
+                             '</button>' +
+                             '<hr/>' +
+                             '<button id="urlentrysubmit">' +
+                             M.util.get_string('createlink', 'contenteditable_link') +
                              '</button>' +
                              '</form>' +
                              '<hr/>' + M.util.get_string('accessibilityhint', 'contenteditable_link'));

@@ -5,6 +5,9 @@ M.contenteditable_media = M.contenteditable_media || {
         var display_chooser = function(e) {
             var elementid = this.getAttribute('data-editor');
             e.preventDefault();
+            if (!M.editor_contenteditable.is_active(elementid)) {
+                return;
+            }
             M.contenteditable_media.selection = M.editor_contenteditable.get_selection();
             if (M.contenteditable_media.selection !== false) {
                 var dialogue = new M.core.dialogue({
@@ -68,12 +71,12 @@ M.contenteditable_media = M.contenteditable_media || {
                              '</label><br/>' +
                              '<input type="text" value="" id="nameentry" size="64" required="true"/>' +
                              '<br/>' +
-                             '<button id="urlentrysubmit">' +
-                             M.util.get_string('createmedia', 'contenteditable_media') +
-                             '</button>' +
-                             '<hr/>' +
                              '<button id="openmediabrowser" data-editor="' + Y.Escape.html(elementid) + '">' +
                              M.util.get_string('browserepositories', 'contenteditable_media') +
+                             '</button>' +
+                             '<hr/>' +
+                             '<button id="urlentrysubmit">' +
+                             M.util.get_string('createmedia', 'contenteditable_media') +
                              '</button>' +
                              '</form>' +
                              '<hr/>' + M.util.get_string('accessibilityhint', 'contenteditable_media'));
