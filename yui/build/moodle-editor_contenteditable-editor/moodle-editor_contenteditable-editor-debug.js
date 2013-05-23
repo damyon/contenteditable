@@ -39,7 +39,12 @@ M.editor_contenteditable = M.editor_contenteditable || {
             selection = selection.pop();
         }
 
-        var node = Y.one(selection.startContainer);
+        var node = null;
+        if (selection.parentElement) {
+            node = Y.one(selection.parentElement());
+        } else {
+            node = Y.one(selection.startContainer);
+        }
 
         // TODO - make work on ie
 
