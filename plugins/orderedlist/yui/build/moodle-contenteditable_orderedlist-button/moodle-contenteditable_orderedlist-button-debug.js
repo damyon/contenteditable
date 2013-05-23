@@ -1,27 +1,16 @@
 YUI.add('moodle-contenteditable_orderedlist-button', function (Y, NAME) {
 
-var ORDEREDLIST = function() {
-    ORDEREDLIST.superclass.constructor.apply(this, arguments);
-};
+M.contenteditable_orderedlist = M.contenteditable_orderedlist || {
+    init : function(params) {
+        var click = function(e) {
+            e.preventDefault();
+            document.execCommand('insertOrderedList', false, null);
+        };
 
-ORDEREDLIST.NAME = 'contenteditable_orderedlist';
-ORDEREDLIST.ATTRS = {};
-
-Y.extend(ORDEREDLIST, Y.Base, {
-    initializer : function(params) {
-        M.editor_contenteditable.add_toolbar_button(params.elementid, 'orderedlist', params.icon, this.click);
-    },
-
-    click : function(e) {
-        e.preventDefault();
-        document.execCommand('insertOrderedList', false, null);
+        M.editor_contenteditable.add_toolbar_button(params.elementid, 'orderedlist', params.icon, click);
     }
-});
-
-M.contenteditable_orderedlist = M.contenteditable_orderedlist || {};
-M.contenteditable_orderedlist.init = function(id, params) {
-    return new ORDEREDLIST(id, params);
 };
+
 
 
 }, '@VERSION@', {"requires": ["node"]});

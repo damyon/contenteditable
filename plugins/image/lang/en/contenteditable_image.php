@@ -29,6 +29,6 @@ $string['createimage'] = 'Insert image';
 $string['enterurl'] = 'Enter URL';
 $string['enteralt'] = 'Enter alternative text';
 $string['browserepositories'] = 'Browse repositories...';
-$string['accessibilityhint'] = '<p>Relevant web content accessibility guideline (WCAG) links:<br/><ul><li><a href="http://www.w3.org/TR/WCAG20/#text-equiv" target="_blank">Text Alternatives</a></li></ul></p>';
+$string['accessibilityhint'] = '<p>Web content accessibility guidelines (WCAG):<br/><ul><li><a href="http://www.w3.org/TR/WCAG20/#text-equiv" target="_blank">Text Alternatives</a></li></ul></p>';
 $string['width'] = 'Width';
 $string['height'] = 'Height';

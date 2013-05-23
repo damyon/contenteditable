@@ -1,27 +1,16 @@
 YUI.add('moodle-contenteditable_italic-button', function (Y, NAME) {
 
-var ITALIC = function() {
-    ITALIC.superclass.constructor.apply(this, arguments);
-};
+M.contenteditable_italic = M.contenteditable_italic || {
+    init : function(params) {
+        var click = function(e) {
+            e.preventDefault();
+            document.execCommand('italic', false, null);
+        };
 
-ITALIC.NAME = 'contenteditable_italic';
-ITALIC.ATTRS = {};
-
-Y.extend(ITALIC, Y.Base, {
-    initializer : function(params) {
-        M.editor_contenteditable.add_toolbar_button(params.elementid, 'italic', params.icon, this.click);
-    },
-
-    click : function(e) {
-        e.preventDefault();
-        document.execCommand('italic', false, null);
+        M.editor_contenteditable.add_toolbar_button(params.elementid, 'italic', params.icon, click);
     }
-});
-
-M.contenteditable_italic = M.contenteditable_italic || {};
-M.contenteditable_italic.init = function(id, params) {
-    return new ITALIC(id, params);
 };
+
 
 
 }, '@VERSION@', {"requires": ["node"]});

@@ -1,27 +1,16 @@
 YUI.add('moodle-contenteditable_clear-button', function (Y, NAME) {
 
-var CLEAR = function() {
-    CLEAR.superclass.constructor.apply(this, arguments);
-};
+M.contenteditable_clear = M.contenteditable_clear || {
+    init : function(params) {
+        var click = function(e) {
+            e.preventDefault();
+            document.execCommand('removeFormat', false);
+        };
 
-CLEAR.NAME = 'contenteditable_clear';
-CLEAR.ATTRS = {};
-
-Y.extend(CLEAR, Y.Base, {
-    initializer : function(params) {
-        M.editor_contenteditable.add_toolbar_button(params.elementid, 'clear', params.icon, this.click);
-    },
-
-    click : function(e) {
-        e.preventDefault();
-        document.execCommand('removeFormat', false);
+        M.editor_contenteditable.add_toolbar_button(params.elementid, 'clear', params.icon, click);
     }
-});
-
-M.contenteditable_clear = M.contenteditable_clear || {};
-M.contenteditable_clear.init = function(id, params) {
-    return new CLEAR(id, params);
 };
+
 
 
 }, '@VERSION@', {"requires": ["node"]});
