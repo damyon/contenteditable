@@ -16,8 +16,6 @@ Also - change the order so this editor is the first in the list.
 
 Caveats:
 
-This editor does not implement Moodle Media, Moodle Image or tables plugins (yet).
+There is no table editing support (but you can cut/paste tables into the editor).
 
-It does support repositories for links though - other types will come soon.
 
-So it is not yet a complete replacement for TinyMCE.
