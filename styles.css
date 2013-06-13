@@ -29,7 +29,34 @@ body.dir-rtl div.editor_contenteditable_toolbar button.contenteditable_indent_bu
     margin-left: 1em;
 }
 
-div.editor_contenteditable img {
+.editor_contenteditable img {
     resize: both; overflow: auto;
 }
+.contenteditable_menuentry {
+    clear: left;
+}
+.contenteditable_menuentry img {
+    width: 16px;
+    height: 16px;
+}
 
+.contenteditable_menu {
+    min-width: 12em;
+    background: white;
+    padding: 1px;
+}
+div.editor_contenteditable_toolbar .contenteditable_hasmenu {
+    padding-right: 1em;
+    background-image:url([[pix:t/expanded]]);
+    background-position:100% 30%;
+    background-repeat:no-repeat;
+}
+
+.contenteditable_menu a {
+    color: black;
+}
+.contenteditable_menuentry {
+    border: 1px solid gray;
+    padding: 4px;
+    border-radius: 2px;
+}

@@ -25,7 +25,7 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="15.839192"
-     inkscape:cx="-8.2482624"
+     inkscape:cx="10.944636"
      inkscape:cy="15.312045"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
@@ -54,15 +54,25 @@
      transform="translate(0,-1036.3622)">
     <text
        xml:space="preserve"
-       style="font-size:64px;font-style:normal;font-variant:normal;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:Comic Sans MS;-inkscape-font-specification:Arial Title"
-       x="8.6494312"
-       y="1049.458"
+       style="font-size:60.68878555px;font-style:normal;font-variant:normal;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:Comic Sans MS;-inkscape-font-specification:Arial Title"
+       x="7.4835119"
+       y="1106.6505"
        id="text2984"
-       sodipodi:linespacing="125%"><tspan
+       sodipodi:linespacing="125%"
+       transform="scale(1.0545606,0.94826226)"><tspan
          sodipodi:role="line"
          id="tspan2986"
-         x="8.6494312"
-         y="1049.458"
-         style="font-size:14px;font-style:normal;font-variant:normal;font-stretch:normal;fill:#999999;fill-opacity:1;font-family:Arial;-inkscape-font-specification:Arial Title">H1</tspan></text>
+         x="7.4835119"
+         y="1106.6505"
+         style="font-size:13.27567196px;font-style:normal;font-variant:normal;font-stretch:normal;fill:#999999;fill-opacity:1;font-family:Arial;-inkscape-font-specification:Arial Title">T</tspan></text>
+    <rect
+       style="fill:none;stroke:#999999;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+       id="rect2984"
+       width="13.068849"
+       height="13.195118"
+       x="1.3889598"
+       y="1.2896537"
+       transform="translate(0,1036.3622)"
+       ry="0.74078137" />
   </g>
 </svg>

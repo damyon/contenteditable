@@ -4,9 +4,79 @@ M.editor_contenteditable = M.editor_contenteditable || {
      */
     buttonhandlers : {},
     /**
+     * List of YUI overlays for custom menus.
+     */
+    menus : {},
+    /**
      * List of file picker options for specific editor instances.
      */
     filepickeroptions : {},
+
+    showhide_menu_handler : function(e) {
+        e.preventDefault();
+
+        var overlayid = this.getAttribute('data-menu');
+        var overlay = M.editor_contenteditable.menus[overlayid];
+
+        if (overlay.get('visible')) {
+            overlay.hide();
+        } else {
+            overlay.show();
+        }
+
+    },
+
+    /**
+     * Add a button to the toolbar belonging to the editor for element with id "elementid".
+     * @param string elementid - the id of the textarea we created this editor from.
+     * @param string plugin - the plugin defining the button
+     * @param string icon - the html used for the content of the button
+     * @handler function handler- A function to call when the button is clicked.
+     */
+    add_toolbar_menu : function(elementid, plugin, icon, entries) {
+        var toolbar = Y.one('#' + elementid + '_toolbar');
+        var button = Y.Node.create('<button class="contenteditable_' + plugin + '_button contenteditable_hasmenu" ' +
+                                    'data-editor="' + Y.Escape.html(elementid) + '" ' +
+                                    'data-menu="' + plugin + '_' + elementid + '" >' +
+                                    icon +
+                                    '</button>');
+
+        toolbar.append(button);
+        var menu = Y.Node.create('<div class="contenteditable_' + plugin + '_menu' +
+                                 ' contenteditable_menu" data-editor="' + Y.Escape.html(elementid) + '"></div>');
+
+        var i = 0, entry = {};
+
+        for (i = 0; i < entries.length; i++) {
+             entry = entries[i];
+             menu.append(Y.Node.create('<div class="contenteditable_menuentry">' +
+                                       '<a href="#" class="contenteditable_' + plugin + '_action_' + i + '" ' +
+                                       'data-editor="' + Y.Escape.html(elementid) + '">' +
+                                       entry.text +
+                                       '</a>' +
+                                       '</div>'));
+            // We only need to attach this once.
+            if (!M.editor_contenteditable.buttonhandlers[plugin + '_action_' + i]) {
+                Y.one('body').delegate('click', entry.handler, '.contenteditable_' + plugin + '_action_' + i);
+                M.editor_contenteditable.buttonhandlers[plugin + '_action_' + i] = true;
+            }
+        }
+
+        if (!M.editor_contenteditable.buttonhandlers[plugin]) {
+            Y.one('body').delegate('click', M.editor_contenteditable.showhide_menu_handler, '.contenteditable_' + plugin + '_button');
+            M.editor_contenteditable.buttonhandlers[plugin] = true;
+        }
+
+        var overlay = new Y.Overlay({
+            bodyContent : menu,
+            visible : false,
+            width: '2em',
+            align: {node: button, points: [Y.WidgetPositionAlign.TL, Y.WidgetPositionAlign.BL]}
+        });
+
+        M.editor_contenteditable.menus[plugin + '_' + elementid] = overlay;
+        overlay.render();
+    },
 
     /**
      * Add a button to the toolbar belonging to the editor for element with id "elementid".

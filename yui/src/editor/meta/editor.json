@@ -1,5 +1,5 @@
 {
   "moodle-editor_contenteditable-editor": {
-    "requires": ["node", "io"]
+    "requires": ["node", "io", "overlay"]
   }
 }

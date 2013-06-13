@@ -23,5 +23,9 @@
  */
 
 
-$string['pluginname'] = 'Title';
-$string['title'] = 'Title';
+$string['pluginname'] = 'Paragraph styles';
+$string['title'] = 'Paragraph styles';
+$string['h1'] = 'Title';
+$string['h2'] = 'Heading';
+$string['blockquote'] = 'Quoted';
+$string['p'] = 'Plain';

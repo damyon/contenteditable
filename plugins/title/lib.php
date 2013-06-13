@@ -28,6 +28,10 @@ function contenteditable_title_init_editor($elementid) {
 
     $icon = $OUTPUT->pix_icon('title', get_string('title', 'contenteditable_title'), 'contenteditable_title', array('class'=>'icon'));
 
+    $PAGE->requires->strings_for_js(array('h1',
+                                          'h2',
+                                          'blockquote',
+                                          'p'), 'contenteditable_title');
     $PAGE->requires->yui_module('moodle-contenteditable_title-button',
                                 'M.contenteditable_title.init',
                                 array(array('elementid'=>$elementid, 'icon'=>$icon)),
