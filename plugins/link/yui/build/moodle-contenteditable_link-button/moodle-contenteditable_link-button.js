@@ -77,4 +77,4 @@ M.contenteditable_link = M.contenteditable_link || {
 };
 
 
-}, '@VERSION@', {"requires": ["node"]});
+}, '@VERSION@', {"requires": ["node", "escape"]});

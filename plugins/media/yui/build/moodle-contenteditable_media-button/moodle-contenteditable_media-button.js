@@ -90,4 +90,4 @@ M.contenteditable_media = M.contenteditable_media || {
 };
 
 
-}, '@VERSION@', {"requires": ["node"]});
+}, '@VERSION@', {"requires": ["node", "escape"]});

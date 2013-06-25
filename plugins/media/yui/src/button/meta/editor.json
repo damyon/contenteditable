@@ -1,5 +1,8 @@
 {
   "moodle-contenteditable_media-button": {
-    "requires": ["node"]
+    "requires": [
+        "node",
+        "escape"
+    ]
   }
 }

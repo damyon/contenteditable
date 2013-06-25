@@ -1,5 +1,10 @@
 {
   "moodle-editor_contenteditable-editor": {
-    "requires": ["node", "io", "overlay"]
+    "requires": [
+        "node",
+        "io",
+        "overlay",
+        "escape"
+      ]
   }
 }
