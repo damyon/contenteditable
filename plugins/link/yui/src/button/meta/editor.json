@@ -1,5 +1,8 @@
 {
   "moodle-contenteditable_link-button": {
-    "requires": ["node"]
+    "requires": [
+        "node",
+        "escape"
+    ]
   }
 }

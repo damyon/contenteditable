@@ -1,5 +1,8 @@
 {
   "moodle-contenteditable_image-button": {
-    "requires": ["node"]
+    "requires": [
+        "node",
+        "escape"
+    ]
   }
 }

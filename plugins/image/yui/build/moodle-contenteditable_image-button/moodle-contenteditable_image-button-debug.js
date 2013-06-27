@@ -112,4 +112,4 @@ M.contenteditable_image = M.contenteditable_image || {
 };
 
 
-}, '@VERSION@', {"requires": ["node"]});
+}, '@VERSION@', {"requires": ["node", "escape"]});
