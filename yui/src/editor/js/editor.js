@@ -3,27 +3,93 @@ M.editor_contenteditable = M.editor_contenteditable || {
      * List of attached button handlers to prevent duplicates.
      */
     buttonhandlers : {},
+
     /**
      * List of YUI overlays for custom menus.
      */
     menus : {},
+
     /**
      * List of file picker options for specific editor instances.
      */
     filepickeroptions : {},
 
+    /**
+     * List of buttons and menus that have been added to the toolbar.
+     */
+    widgets : {},
+
+    /**
+     * Toggle a menu.
+     * @param event e
+     */
     showhide_menu_handler : function(e) {
         e.preventDefault();
-
+        var disabled = this.getAttribute('disabled');
         var overlayid = this.getAttribute('data-menu');
         var overlay = M.editor_contenteditable.menus[overlayid];
 
-        if (overlay.get('visible')) {
+        if (overlay.get('visible') || disabled) {
             overlay.hide();
         } else {
             overlay.show();
         }
 
+    },
+
+    /**
+     * Determine if the specified toolbar button/menu is enabled.
+     * @param string elementid, the element id of this editor.
+     * @param string plugin, the plugin that created the button/menu.
+     */
+    is_enabled : function(elementid, plugin) {
+        var element = Y.one('#' + elementid + '_toolbar .contenteditable_' + plugin + '_button');
+        Y.log(element);
+        Y.log(element.getAttribute('disabled'));
+
+        return !element.hasAttribute('disabled');
+    },
+    /**
+     * Disable all buttons and menus in the toolbar.
+     * @param string elementid, the element id of this editor.
+     */
+    disable_all_widgets : function(elementid) {
+        var plugin, element;
+        for (plugin in M.editor_contenteditable.widgets) {
+            element = Y.one('#' + elementid + '_toolbar .contenteditable_' + plugin + '_button');
+
+            if (element) {
+                element.setAttribute('disabled', 'true');
+            }
+        }
+    },
+
+    /**
+     * Enable a single widget in the toolbar.
+     * @param string elementid, the element id of this editor.
+     * @param string plugin, the name of the plugin that created the widget.
+     */
+    enable_widget : function(elementid, plugin) {
+        var element = Y.one('#' + elementid + '_toolbar .contenteditable_' + plugin + '_button');
+
+        if (element) {
+            element.removeAttribute('disabled');
+        }
+    },
+
+    /**
+     * Enable all buttons and menus in the toolbar.
+     * @param string elementid, the element id of this editor.
+     */
+    enable_all_widgets : function(elementid) {
+        var plugin, element;
+        for (plugin in M.editor_contenteditable.widgets) {
+            element = Y.one('#' + elementid + '_toolbar .contenteditable_' + plugin + '_button');
+
+            if (element) {
+                element.removeAttribute('disabled');
+            }
+        }
     },
 
     /**
@@ -42,6 +108,10 @@ M.editor_contenteditable = M.editor_contenteditable || {
                                     '</button>');
 
         toolbar.append(button);
+
+        // Save the name of the plugin.
+        M.editor_contenteditable.widgets[plugin] = plugin;
+
         var menu = Y.Node.create('<div class="contenteditable_' + plugin + '_menu' +
                                  ' contenteditable_menu" data-editor="' + Y.Escape.html(elementid) + '"></div>');
 
@@ -55,7 +125,6 @@ M.editor_contenteditable = M.editor_contenteditable || {
                                        entry.text +
                                        '</a>' +
                                        '</div>'));
-            // We only need to attach this once.
             if (!M.editor_contenteditable.buttonhandlers[plugin + '_action_' + i]) {
                 Y.one('body').delegate('click', entry.handler, '.contenteditable_' + plugin + '_action_' + i);
                 M.editor_contenteditable.buttonhandlers[plugin + '_action_' + i] = true;
@@ -93,11 +162,24 @@ M.editor_contenteditable = M.editor_contenteditable || {
 
         toolbar.append(button);
 
+        var wrapper = function(e) {
+            if (M.editor_contenteditable.is_enabled(elementid, plugin)) {
+                // Pass it on.
+                return handler(e, elementid);
+            } else {
+                e.preventDefault();
+            }
+        };
+
         // We only need to attach this once.
         if (!M.editor_contenteditable.buttonhandlers[plugin]) {
-            Y.one('body').delegate('click', handler, '.contenteditable_' + plugin + '_button');
+            Y.one('body').delegate('click', wrapper, '.contenteditable_' + plugin + '_button');
             M.editor_contenteditable.buttonhandlers[plugin] = true;
         }
+
+        // Save the name of the plugin.
+        M.editor_contenteditable.widgets[plugin] = plugin;
+
     },
 
     is_active : function(elementid) {
@@ -113,8 +195,6 @@ M.editor_contenteditable = M.editor_contenteditable || {
         } else {
             node = Y.one(selection.startContainer);
         }
-
-        // TODO - make work on ie
 
         return node && node.ancestor('#' + elementid + 'editable') !== null;
     },

@@ -2,8 +2,7 @@ M.contenteditable_media = M.contenteditable_media || {
     dialogue : null,
     selection : null,
     init : function(params) {
-        var display_chooser = function(e) {
-            var elementid = this.getAttribute('data-editor');
+        var display_chooser = function(e, elementid) {
             e.preventDefault();
             if (!M.editor_contenteditable.is_active(elementid)) {
                 return;

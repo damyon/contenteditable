@@ -1,0 +1,7 @@
+{
+  "moodle-contenteditable_html-button": {
+    "requires": [
+        "node"
+    ]
+  }
+}
