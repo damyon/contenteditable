@@ -12,11 +12,14 @@ M.contenteditable_html = M.contenteditable_html || {
 
             if (M.contenteditable_html.ishtml) {
                 M.editor_contenteditable.enable_all_widgets(elementid);
+                contenteditable.setHTML('');
+                contenteditable.append(textarea.get('value'));
                 textarea.hide();
                 contenteditable.show();
             } else {
                 M.editor_contenteditable.disable_all_widgets(elementid);
                 M.editor_contenteditable.enable_widget(elementid, 'html');
+                textarea.set('value', contenteditable.getHTML());
                 contenteditable.hide();
                 textarea.show();
             }
