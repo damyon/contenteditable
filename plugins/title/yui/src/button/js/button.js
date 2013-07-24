@@ -19,7 +19,7 @@ M.contenteditable_title = M.contenteditable_title || {
 
         var h1 = '<h1>' +  M.util.get_string('h1', 'contenteditable_title') + '</h1>';
         var h2 = '<h2>' +  M.util.get_string('h2', 'contenteditable_title') + '</h2>';
-        var blockquote = '<blockquote>' +  M.util.get_string('blockquote', 'contenteditable_title') + '</blockquote>';
+        var blockquote = '<p>&nbsp;&nbsp;&nbsp;&nbsp;' +  M.util.get_string('blockquote', 'contenteditable_title') + '</p>';
         var p = '<p>' +  M.util.get_string('p', 'contenteditable_title') + '</p>';
 
         M.editor_contenteditable.add_toolbar_menu(params.elementid,
