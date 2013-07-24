@@ -2,20 +2,32 @@ YUI.add('moodle-contenteditable_title-button', function (Y, NAME) {
 
 M.contenteditable_title = M.contenteditable_title || {
     init : function(params) {
-        var click_h1 = function(e) {
+        var click_h1 = function(e, elementid) {
             e.preventDefault();
+            if (!M.editor_contenteditable.is_active(elementid)) {
+                M.editor_contenteditable.focus(elementid);
+            }
             document.execCommand('formatBlock', false, '<h1>');
         };
-        var click_h2 = function(e) {
+        var click_h2 = function(e, elementid) {
             e.preventDefault();
+            if (!M.editor_contenteditable.is_active(elementid)) {
+                M.editor_contenteditable.focus(elementid);
+            }
             document.execCommand('formatBlock', false, '<h2>');
         };
-        var click_blockquote = function(e) {
+        var click_blockquote = function(e, elementid) {
             e.preventDefault();
+            if (!M.editor_contenteditable.is_active(elementid)) {
+                M.editor_contenteditable.focus(elementid);
+            }
             document.execCommand('formatBlock', false, '<blockquote>');
         };
-        var click_p = function(e) {
+        var click_p = function(e, elementid) {
             e.preventDefault();
+            if (!M.editor_contenteditable.is_active(elementid)) {
+                M.editor_contenteditable.focus(elementid);
+            }
             document.execCommand('formatBlock', false, '<p>');
         };
 

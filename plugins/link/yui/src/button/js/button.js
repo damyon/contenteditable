@@ -6,7 +6,7 @@ M.contenteditable_link = M.contenteditable_link || {
         var display_chooser = function(e, elementid) {
             e.preventDefault();
             if (!M.editor_contenteditable.is_active(elementid)) {
-                return;
+                M.editor_contenteditable.focus(elementid);
             }
             M.contenteditable_link.selection = M.editor_contenteditable.get_selection();
             if (M.contenteditable_link.selection !== false && (M.contenteditable_link.selection + '') !== '') {

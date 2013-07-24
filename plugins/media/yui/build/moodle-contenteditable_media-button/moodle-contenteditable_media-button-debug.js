@@ -7,16 +7,21 @@ M.contenteditable_media = M.contenteditable_media || {
         var display_chooser = function(e, elementid) {
             e.preventDefault();
             if (!M.editor_contenteditable.is_active(elementid)) {
-                return;
+                M.editor_contenteditable.focus(elementid);
             }
             M.contenteditable_media.selection = M.editor_contenteditable.get_selection();
             if (M.contenteditable_media.selection !== false) {
-                var dialogue = new M.core.dialogue({
-                    visible: false,
-                    modal: true,
-                    close: true,
-                    draggable: true
-                });
+                var dialogue;
+                if (!M.contenteditable_media.dialogue) {
+                    dialogue = new M.core.dialogue({
+                        visible: false,
+                        modal: true,
+                        close: true,
+                        draggable: true
+                    });
+                } else {
+                    dialogue = M.contenteditable_media.dialogue;
+                }
 
                 dialogue.render();
                 dialogue.set('bodyContent', M.contenteditable_media.get_form_content(elementid));
@@ -37,9 +42,9 @@ M.contenteditable_media = M.contenteditable_media || {
     browser_callback : function(params) {
         console.log(params);
         if (params.url !== '') {
-            var input = Y.one('#urlentry');
+            var input = Y.one('#contenteditable_media_urlentry');
             input.set('value', params.url);
-            input = Y.one('#nameentry');
+            input = Y.one('#contenteditable_media_nameentry');
             input.set('value', params.file);
         }
     },
@@ -47,9 +52,9 @@ M.contenteditable_media = M.contenteditable_media || {
         e.preventDefault();
         M.contenteditable_media.dialogue.hide();
 
-        var input = e.currentTarget.get('parentNode').one('#urlentry');
+        var input = e.currentTarget.get('parentNode').one('#contenteditable_media_urlentry');
         var url = input.get('value');
-        input = e.currentTarget.get('parentNode').one('#nameentry');
+        input = e.currentTarget.get('parentNode').one('#contenteditable_media_nameentry');
         var name = input.get('value');
 
         if (url !== '' && name !== '') {
@@ -65,24 +70,24 @@ M.contenteditable_media = M.contenteditable_media || {
     },
     get_form_content : function(elementid) {
         var content = Y.Node.create('<form>' +
-                             '<label for="urlentry">' + M.util.get_string('enterurl', 'contenteditable_media') +
+                             '<label for="contenteditable_media_urlentry">' + M.util.get_string('enterurl', 'contenteditable_media') +
                              '</label><br/>' +
-                             '<input type="url" value="" id="urlentry" size="64"/>' +
-                             '<label for="nameentry">' + M.util.get_string('entername', 'contenteditable_media') +
+                             '<input type="url" value="" id="contenteditable_media_urlentry" size="64"/>' +
+                             '<label for="contenteditable_media_nameentry">' + M.util.get_string('entername', 'contenteditable_media') +
                              '</label><br/>' +
-                             '<input type="text" value="" id="nameentry" size="64" required="true"/>' +
+                             '<input type="text" value="" id="contenteditable_media_nameentry" size="64" required="true"/>' +
                              '<br/>' +
                              '<button id="openmediabrowser" data-editor="' + Y.Escape.html(elementid) + '">' +
                              M.util.get_string('browserepositories', 'contenteditable_media') +
                              '</button>' +
                              '<hr/>' +
-                             '<button id="urlentrysubmit">' +
+                             '<button id="contenteditable_media_urlentrysubmit">' +
                              M.util.get_string('createmedia', 'contenteditable_media') +
                              '</button>' +
                              '</form>' +
                              '<hr/>' + M.util.get_string('accessibilityhint', 'contenteditable_media'));
 
-        content.one('#urlentrysubmit').on('click', M.contenteditable_media.set_media);
+        content.one('#contenteditable_media_urlentrysubmit').on('click', M.contenteditable_media.set_media);
         content.one('#openmediabrowser').on('click', M.contenteditable_media.open_browser);
         return content;
     }

@@ -5,20 +5,25 @@ M.contenteditable_image = M.contenteditable_image || {
         var display_chooser = function(e, elementid) {
             e.preventDefault();
             if (!M.editor_contenteditable.is_active(elementid)) {
-                return;
+                M.editor_contenteditable.focus(elementid);
             }
             M.contenteditable_image.selection = M.editor_contenteditable.get_selection();
             if (M.contenteditable_image.selection !== false) {
-                var dialogue = new M.core.dialogue({
-                    visible: false,
-                    modal: true,
-                    close: true,
-                    draggable: true
-                });
+                var dialogue;
+                if (!M.contenteditable_image.dialogue) {
+                    dialogue = new M.core.dialogue({
+                        visible: false,
+                        modal: true,
+                        close: true,
+                        draggable: true
+                    });
+                } else {
+                    dialogue = M.contenteditable_image.dialogue;
+                }
 
-                dialogue.render();
                 dialogue.set('bodyContent', M.contenteditable_image.get_form_content(elementid));
                 dialogue.set('headerContent', M.util.get_string('createimage', 'contenteditable_image'));
+                dialogue.render();
                 dialogue.show();
                 M.contenteditable_image.dialogue = dialogue;
             }
@@ -33,25 +38,29 @@ M.contenteditable_image = M.contenteditable_image || {
         M.editor_contenteditable.show_filepicker(elementid, 'image', M.contenteditable_image.browser_callback);
     },
     browser_callback : function(params) {
+        Y.log('Callback');
+        Y.log(params);
         if (params.url !== '') {
-            var input = Y.one('#urlentry');
+            var input = Y.one('#contenteditable_image_urlentry');
             input.set('value', params.url);
-            input = Y.one('#altentry');
+            Y.log('Set URL:' + params.url);
+            input = Y.one('#contenteditable_image_altentry');
             input.set('value', params.file);
+            Y.log('Set File:' + params.file);
         }
     },
     set_image : function(e) {
         e.preventDefault();
         M.contenteditable_image.dialogue.hide();
 
-        var input = e.currentTarget.get('parentNode').one('#urlentry');
+        var input = e.currentTarget.get('parentNode').one('#contenteditable_image_urlentry');
 
         var url = input.get('value');
-        input = e.currentTarget.get('parentNode').one('#altentry');
+        input = e.currentTarget.get('parentNode').one('#contenteditable_image_altentry');
         var alt = input.get('value');
-        input = e.currentTarget.get('parentNode').one('#widthentry');
+        input = e.currentTarget.get('parentNode').one('#contenteditable_image_widthentry');
         var width = input.get('value');
-        input = e.currentTarget.get('parentNode').one('#heightentry');
+        input = e.currentTarget.get('parentNode').one('#contenteditable_image_heightentry');
         var height = input.get('value');
         if (url !== '' && alt !== '') {
             M.editor_contenteditable.set_selection(M.contenteditable_image.selection);
@@ -70,39 +79,36 @@ M.contenteditable_image = M.contenteditable_image || {
             } else {
                 document.execCommand('insertHTML', false, imagehtml);
             }
-             //   M.contenteditable_image.pasteHTML(imagehtml);
-           // } else {
-            //}
- //           document.execCommand('enableObjectResizing', false, true);
+            document.execCommand('enableObjectResizing', false, true);
         }
     },
     get_form_content : function(elementid) {
         var content = Y.Node.create('<form>' +
-                             '<label for="urlentry">' + M.util.get_string('enterurl', 'contenteditable_image') +
+                             '<label for="contenteditable_image_urlentry">' + M.util.get_string('enterurl', 'contenteditable_image') +
                              '</label><br/>' +
-                             '<input type="url" value="" id="urlentry" size="64"/>' +
-                             '<label for="altentry">' + M.util.get_string('enteralt', 'contenteditable_image') +
+                             '<input type="url" value="" id="contenteditable_image_urlentry" size="64"/>' +
+                             '<label for="contenteditable_image_altentry">' + M.util.get_string('enteralt', 'contenteditable_image') +
                              '</label><br/>' +
-                             '<input type="text" value="" id="altentry" size="64" required="true"/>' +
-                             '<label for="widthentry">' + M.util.get_string('width', 'contenteditable_image') +
+                             '<input type="text" value="" id="contenteditable_image_altentry" size="64" required="true"/>' +
+                             '<label for="contenteditable_image_widthentry">' + M.util.get_string('width', 'contenteditable_image') +
                              '</label><br/>' +
-                             '<input type="text" value="" id="widthentry" size="10"/>' +
+                             '<input type="text" value="" id="contenteditable_image_widthentry" size="10"/>' +
                              '<br/>' +
-                             '<label for="heightentry">' + M.util.get_string('height', 'contenteditable_image') +
+                             '<label for="contenteditable_image_heightentry">' + M.util.get_string('height', 'contenteditable_image') +
                              '</label><br/>' +
-                             '<input type="text" value="" id="heightentry" size="10"/>' +
+                             '<input type="text" value="" id="contenteditable_image_heightentry" size="10"/>' +
                              '<br/>' +
                              '<button id="openimagebrowser" data-editor="' + Y.Escape.html(elementid) + '">' +
                              M.util.get_string('browserepositories', 'contenteditable_image') +
                              '</button>' +
                              '<hr/>' +
-                             '<button id="urlentrysubmit">' +
+                             '<button id="contenteditable_image_urlentrysubmit">' +
                              M.util.get_string('createimage', 'contenteditable_image') +
                              '</button>' +
                              '</form>' +
                              '<hr/>' + M.util.get_string('accessibilityhint', 'contenteditable_image'));
 
-        content.one('#urlentrysubmit').on('click', M.contenteditable_image.set_image);
+        content.one('#contenteditable_image_urlentrysubmit').on('click', M.contenteditable_image.set_image);
         content.one('#openimagebrowser').on('click', M.contenteditable_image.open_browser);
         return content;
     }

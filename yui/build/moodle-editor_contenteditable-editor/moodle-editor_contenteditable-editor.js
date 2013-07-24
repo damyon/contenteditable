@@ -12,6 +12,11 @@ M.editor_contenteditable = M.editor_contenteditable || {
     menus : {},
 
     /**
+     * List of attached menu handlers to prevent duplicates.
+     */
+    menuhandlers : {},
+
+    /**
      * List of file picker options for specific editor instances.
      */
     filepickeroptions : {},
@@ -37,6 +42,24 @@ M.editor_contenteditable = M.editor_contenteditable || {
             overlay.show();
         }
 
+    },
+
+    buttonclicked_handler : function(e) {
+        var elementid = this.getAttribute('data-editor');
+        var plugin = this.getAttribute('data-plugin');
+        var handler = this.getAttribute('data-handler');
+        var overlay = M.editor_contenteditable.menus[plugin + '_' + elementid];
+
+
+        if (overlay) {
+            overlay.hide();
+        }
+
+        if (M.editor_contenteditable.is_enabled(elementid, plugin)) {
+            // Pass it on.
+            handler = M.editor_contenteditable.buttonhandlers[handler];
+            return handler(e, elementid);
+        }
     },
 
     /**
@@ -118,16 +141,19 @@ M.editor_contenteditable = M.editor_contenteditable || {
         var i = 0, entry = {};
 
         for (i = 0; i < entries.length; i++) {
-             entry = entries[i];
-             menu.append(Y.Node.create('<div class="contenteditable_menuentry">' +
+            entry = entries[i];
+
+            menu.append(Y.Node.create('<div class="contenteditable_menuentry">' +
                                        '<a href="#" class="contenteditable_' + plugin + '_action_' + i + '" ' +
-                                       'data-editor="' + Y.Escape.html(elementid) + '">' +
+                                       'data-editor="' + Y.Escape.html(elementid) + '" ' +
+                                       'data-plugin="' + Y.Escape.html(plugin) + '" ' +
+                                       'data-handler="' + Y.Escape.html(plugin + '_action_' + i) + '">' +
                                        entry.text +
                                        '</a>' +
                                        '</div>'));
             if (!M.editor_contenteditable.buttonhandlers[plugin + '_action_' + i]) {
-                Y.one('body').delegate('click', entry.handler, '.contenteditable_' + plugin + '_action_' + i);
-                M.editor_contenteditable.buttonhandlers[plugin + '_action_' + i] = true;
+                Y.one('body').delegate('click', M.editor_contenteditable.buttonclicked_handler, '.contenteditable_' + plugin + '_action_' + i);
+                M.editor_contenteditable.buttonhandlers[plugin + '_action_' + i] = entry.handler;
             }
         }
 
@@ -156,25 +182,19 @@ M.editor_contenteditable = M.editor_contenteditable || {
      */
     add_toolbar_button : function(elementid, plugin, icon, handler) {
         var toolbar = Y.one('#' + elementid + '_toolbar');
-        var button = Y.Node.create('<button class="contenteditable_' + plugin + '_button" data-editor="' + Y.Escape.html(elementid) + '">' +
+        var button = Y.Node.create('<button class="contenteditable_' + plugin + '_button" ' +
+                                   'data-editor="' + Y.Escape.html(elementid) + '" ' +
+                                   'data-plugin="' + Y.Escape.html(plugin) + '" ' +
+                                   'data-handler="' + Y.Escape.html(plugin) + '">' +
                                     icon +
                                     '</button>');
 
         toolbar.append(button);
 
-        var wrapper = function(e) {
-            if (M.editor_contenteditable.is_enabled(elementid, plugin)) {
-                // Pass it on.
-                return handler(e, elementid);
-            } else {
-                e.preventDefault();
-            }
-        };
-
         // We only need to attach this once.
         if (!M.editor_contenteditable.buttonhandlers[plugin]) {
-            Y.one('body').delegate('click', wrapper, '.contenteditable_' + plugin + '_button');
-            M.editor_contenteditable.buttonhandlers[plugin] = true;
+            Y.one('body').delegate('click', M.editor_contenteditable.buttonclicked_handler, '.contenteditable_' + plugin + '_button');
+            M.editor_contenteditable.buttonhandlers[plugin] = handler;
         }
 
         // Save the name of the plugin.
@@ -199,6 +219,10 @@ M.editor_contenteditable = M.editor_contenteditable || {
         return node && node.ancestor('#' + elementid + 'editable') !== null;
     },
 
+    focus : function(elementid) {
+        Y.one('#' + elementid + 'editable').focus();
+    },
+
     init : function(params) {
         var textarea = Y.one('#' +params.elementid);
         var contenteditable = Y.Node.create('<div id="' + params.elementid + 'editable" ' +
@@ -208,7 +232,7 @@ M.editor_contenteditable = M.editor_contenteditable || {
         var cssfont = '';
         var toolbar = Y.Node.create('<div class="editor_contenteditable_toolbar" id="' + params.elementid + '_toolbar"/>');
 
-        // bleh - why are we sent a url and not the css to apply directly
+        // Bleh - why are we sent a url and not the css to apply directly?
         var css = Y.io(params.content_css, { sync: true });
         var pos = css.responseText.indexOf('font:');
         if (pos) {
