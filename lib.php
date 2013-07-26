@@ -82,6 +82,7 @@ class contenteditable_texteditor extends texteditor {
         $PAGE->requires->yui_module('moodle-editor_contenteditable-editor',
                                     'M.editor_contenteditable.init', 
                                     array($this->get_init_params($elementid, $options, $fpoptions)), true);
+        require_once($CFG->libdir . '/pluginlib.php');
 
         $pluginman = plugin_manager::instance();
         $plugins = $pluginman->get_subplugins_of_plugin('editor_contenteditable');
