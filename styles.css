@@ -29,6 +29,10 @@ body.dir-rtl div.editor_contenteditable_toolbar button.contenteditable_indent_bu
     margin-left: 1em;
 }
 
+.contenteditable_hasmenu .icon {
+    width: 32px;
+}
+
 .editor_contenteditable img {
     resize: both; overflow: auto;
 }
@@ -45,18 +49,18 @@ body.dir-rtl div.editor_contenteditable_toolbar button.contenteditable_indent_bu
     background: white;
     padding: 1px;
 }
-div.editor_contenteditable_toolbar .contenteditable_hasmenu {
-    padding-right: 1em;
-    background-image:url([[pix:t/expanded]]);
-    background-position:100% 30%;
-    background-repeat:no-repeat;
-}
 
 .contenteditable_menu a {
     color: black;
 }
 .contenteditable_menuentry {
-    border: 1px solid gray;
-    padding: 4px;
-    border-radius: 2px;
+    border-bottom: 1px solid #eee;
+    padding: 2px;
 }
+
+.contenteditable_menuentry h1,
+.contenteditable_menuentry h2,
+.contenteditable_menuentry p {
+    margin: 4px;
+}
+

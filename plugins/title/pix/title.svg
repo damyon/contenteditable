@@ -9,12 +9,15 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="16"
+   width="32"
    height="16"
    id="svg2"
    version="1.1"
    inkscape:version="0.48.3.1 r9886"
-   sodipodi:docname="title.svg">
+   sodipodi:docname="title.svg"
+   inkscape:export-filename="/home/damyonw/Documents/Moodle/instances/im/moodle/lib/editor/contenteditable/plugins/title/pix/title.png"
+   inkscape:export-xdpi="90"
+   inkscape:export-ydpi="90">
   <defs
      id="defs4" />
   <sodipodi:namedview
@@ -26,12 +29,12 @@
      inkscape:pageshadow="2"
      inkscape:zoom="15.839192"
      inkscape:cx="10.944636"
-     inkscape:cy="15.312045"
+     inkscape:cy="10.261282"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
-     inkscape:window-width="1122"
-     inkscape:window-height="685"
+     inkscape:window-width="1175"
+     inkscape:window-height="714"
      inkscape:window-x="162"
      inkscape:window-y="57"
      inkscape:window-maximized="0" />
@@ -43,7 +46,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -74,5 +77,11 @@
        y="1.2896537"
        transform="translate(0,1036.3622)"
        ry="0.74078137" />
+    <path
+       style="fill:#999999;fill-opacity:1;stroke:#999999;stroke-width:0.46544716;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dashoffset:0"
+       d="m 23.655897,1047.3429 c -3.478888,-4.407 -1.017073,-1.216 -3.777349,-4.5667 0,-0.1504 0.1952,-0.2718 0.437667,-0.2718 l 6.845979,0 c 0.242467,0 0.547252,0.1374 0.437667,0.2718 l -3.506296,4.2951 c -0.109585,0.1342 -0.1952,0.2716 -0.437668,0.2716 z"
+       id="rect2985"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="ccssssc" />
   </g>
 </svg>

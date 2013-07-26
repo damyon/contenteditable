@@ -4,7 +4,8 @@
         "node",
         "io",
         "overlay",
-        "escape"
+        "escape",
+        "moodle-core-notification"
       ]
   }
 }

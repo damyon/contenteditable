@@ -165,15 +165,20 @@ M.editor_contenteditable = M.editor_contenteditable || {
             M.editor_contenteditable.buttonhandlers[plugin] = true;
         }
 
-        var overlay = new Y.Overlay({
+        var overlay = new M.core.dialogue({
             bodyContent : menu,
             visible : false,
-            width: '2em',
+            width: '14em',
+            zindex: 100,
+            lightbox: false,
+            closeButton: false,
             align: {node: button, points: [Y.WidgetPositionAlign.TL, Y.WidgetPositionAlign.BL]}
         });
 
         M.editor_contenteditable.menus[plugin + '_' + elementid] = overlay;
         overlay.render();
+        overlay.hide();
+        overlay.headerNode.hide();
     },
 
     /**
@@ -312,4 +317,4 @@ M.editor_contenteditable = M.editor_contenteditable || {
 
 
 
-}, '@VERSION@', {"requires": ["node", "io", "overlay", "escape"]});
+}, '@VERSION@', {"requires": ["node", "io", "overlay", "escape", "moodle-core-notification"]});
