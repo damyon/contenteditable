@@ -26,6 +26,7 @@ M.contenteditable_image = M.contenteditable_image || {
                 dialogue.set('bodyContent', M.contenteditable_image.get_form_content(elementid));
                 dialogue.set('headerContent', M.util.get_string('createimage', 'contenteditable_image'));
                 dialogue.render();
+                dialogue.centerDialogue();
                 dialogue.show();
                 M.contenteditable_image.dialogue = dialogue;
             }
@@ -85,21 +86,21 @@ M.contenteditable_image = M.contenteditable_image || {
         }
     },
     get_form_content : function(elementid) {
-        var content = Y.Node.create('<form>' +
+        var content = Y.Node.create('<form class="contenteditable_form">' +
                              '<label for="contenteditable_image_urlentry">' + M.util.get_string('enterurl', 'contenteditable_image') +
-                             '</label><br/>' +
-                             '<input type="url" value="" id="contenteditable_image_urlentry" size="64"/>' +
+                             '</label>' +
+                             '<input type="url" value="" id="contenteditable_image_urlentry" size="32"/>' +
                              '<label for="contenteditable_image_altentry">' + M.util.get_string('enteralt', 'contenteditable_image') +
-                             '</label><br/>' +
-                             '<input type="text" value="" id="contenteditable_image_altentry" size="64" required="true"/>' +
+                             '</label>' +
+                             '<input type="text" value="" id="contenteditable_image_altentry" size="32" required="true"/>' +
                              '<label for="contenteditable_image_widthentry">' + M.util.get_string('width', 'contenteditable_image') +
-                             '</label><br/>' +
+                             '</label>' +
                              '<input type="text" value="" id="contenteditable_image_widthentry" size="10"/>' +
                              '<br/>' +
                              '<label for="contenteditable_image_heightentry">' + M.util.get_string('height', 'contenteditable_image') +
-                             '</label><br/>' +
+                             '</label>' +
                              '<input type="text" value="" id="contenteditable_image_heightentry" size="10"/>' +
-                             '<br/>' +
+                             '<hr/>' +
                              '<button id="openimagebrowser" data-editor="' + Y.Escape.html(elementid) + '">' +
                              M.util.get_string('browserepositories', 'contenteditable_image') +
                              '</button>' +

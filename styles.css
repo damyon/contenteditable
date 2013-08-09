@@ -64,3 +64,8 @@ body.dir-rtl div.editor_contenteditable_toolbar button.contenteditable_indent_bu
     margin: 4px;
 }
 
+
+.contenteditable_form label {
+    display: block;
+    margin: 5px;
+}

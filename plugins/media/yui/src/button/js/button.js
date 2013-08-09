@@ -24,6 +24,7 @@ M.contenteditable_media = M.contenteditable_media || {
                 dialogue.render();
                 dialogue.set('bodyContent', M.contenteditable_media.get_form_content(elementid));
                 dialogue.set('headerContent', M.util.get_string('createmedia', 'contenteditable_media'));
+                dialogue.centerDialogue();
                 dialogue.show();
                 M.contenteditable_media.dialogue = dialogue;
             }
@@ -67,14 +68,14 @@ M.contenteditable_media = M.contenteditable_media || {
         }
     },
     get_form_content : function(elementid) {
-        var content = Y.Node.create('<form>' +
+        var content = Y.Node.create('<form class="contenteditable_form">' +
                              '<label for="contenteditable_media_urlentry">' + M.util.get_string('enterurl', 'contenteditable_media') +
-                             '</label><br/>' +
-                             '<input type="url" value="" id="contenteditable_media_urlentry" size="64"/>' +
+                             '</label>' +
+                             '<input type="url" value="" id="contenteditable_media_urlentry" size="32"/>' +
                              '<label for="contenteditable_media_nameentry">' + M.util.get_string('entername', 'contenteditable_media') +
-                             '</label><br/>' +
-                             '<input type="text" value="" id="contenteditable_media_nameentry" size="64" required="true"/>' +
-                             '<br/>' +
+                             '</label>' +
+                             '<input type="text" value="" id="contenteditable_media_nameentry" size="32" required="true"/>' +
+                             '<hr/>' +
                              '<button id="openmediabrowser" data-editor="' + Y.Escape.html(elementid) + '">' +
                              M.util.get_string('browserepositories', 'contenteditable_media') +
                              '</button>' +
