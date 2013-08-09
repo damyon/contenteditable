@@ -50,7 +50,6 @@ M.editor_contenteditable = M.editor_contenteditable || {
         var handler = this.getAttribute('data-handler');
         var overlay = M.editor_contenteditable.menus[plugin + '_' + elementid];
 
-
         if (overlay) {
             overlay.hide();
         }
@@ -291,6 +290,13 @@ M.editor_contenteditable = M.editor_contenteditable || {
             }
         }
         return false;
+    },
+
+    get_selection_text : function() {
+        var selection = M.editor_contenteditable.get_selection();
+        if (selection.length > 0 && selection[0].cloneContents) {
+            return selection[0].cloneContents();
+        }
     },
 
     set_selection : function(selection) {

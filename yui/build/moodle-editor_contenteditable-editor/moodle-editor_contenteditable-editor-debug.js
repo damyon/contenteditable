@@ -50,8 +50,6 @@ M.editor_contenteditable = M.editor_contenteditable || {
         var handler = this.getAttribute('data-handler');
         var overlay = M.editor_contenteditable.menus[plugin + '_' + elementid];
 
-        Y.log(overlay);
-
         if (overlay) {
             overlay.hide();
         }
@@ -70,8 +68,6 @@ M.editor_contenteditable = M.editor_contenteditable || {
      */
     is_enabled : function(elementid, plugin) {
         var element = Y.one('#' + elementid + '_toolbar .contenteditable_' + plugin + '_button');
-        Y.log(element);
-        Y.log(element.getAttribute('disabled'));
 
         return !element.hasAttribute('disabled');
     },
@@ -294,6 +290,13 @@ M.editor_contenteditable = M.editor_contenteditable || {
             }
         }
         return false;
+    },
+
+    get_selection_text : function() {
+        var selection = M.editor_contenteditable.get_selection();
+        if (selection.length > 0 && selection[0].cloneContents) {
+            return selection[0].cloneContents();
+        }
     },
 
     set_selection : function(selection) {

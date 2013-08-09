@@ -27,8 +27,39 @@ M.contenteditable_image = M.contenteditable_image || {
                 dialogue.set('headerContent', M.util.get_string('createimage', 'contenteditable_image'));
                 dialogue.render();
                 dialogue.centerDialogue();
-                dialogue.show();
                 M.contenteditable_image.dialogue = dialogue;
+
+                var selectedText = M.editor_contenteditable.get_selection_text();
+                var i = 0;
+
+                var images = [];
+                for (i = 0; i < selectedText.childNodes.length; i++) {
+                    var child = selectedText.childNodes[0];
+                    if (images.length === 0) {
+                        if (child.nodeName.toLowerCase() === 'img') {
+                            images[0] = child;
+                        } else {
+                            images = child.getElementsByTagName('img');
+                        }
+                    }
+                }
+
+                if (images.length > 0) {
+                    var image = Y.one(images[0]);
+                    var width = image.getAttribute('width');
+                    var height = image.getAttribute('height');
+                    if (width > 0) {
+                        Y.one('#contenteditable_image_widthentry').set('value', width);
+                    }
+                    if (height > 0) {
+                        Y.one('#contenteditable_image_heightentry').set('value', height);
+                    }
+                    Y.one('#contenteditable_image_preview').set('src', image.get('src'));
+                    Y.one('#contenteditable_image_preview').setStyle('display', 'inline');
+                    Y.one('#contenteditable_image_altentry').set('value', image.get('alt'));
+                    Y.one('#contenteditable_image_urlentry').set('value', image.get('src'));
+                }
+                dialogue.show();
             }
         };
 
@@ -88,7 +119,6 @@ M.contenteditable_image = M.contenteditable_image || {
             } else {
                 document.execCommand('insertHTML', false, imagehtml);
             }
-            document.execCommand('enableObjectResizing', false, true);
         }
     },
     get_form_content : function(elementid) {
