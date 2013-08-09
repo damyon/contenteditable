@@ -46,6 +46,16 @@ M.contenteditable_image = M.contenteditable_image || {
             input.set('value', params.url);
             input = Y.one('#contenteditable_image_altentry');
             input.set('value', params.file);
+
+            // Auto set the width and height.
+            var image = new Image();
+            image.onload = function() {
+                Y.one('#contenteditable_image_widthentry').set('value', this.width);
+                Y.one('#contenteditable_image_heightentry').set('value', this.height);
+                Y.one('#contenteditable_image_preview').set('src', this.src);
+                Y.one('#contenteditable_image_preview').setStyle('display', 'inline');
+            };
+            image.src = params.url;
         }
     },
     set_image : function(e) {
@@ -96,6 +106,9 @@ M.contenteditable_image = M.contenteditable_image || {
                              '<label for="contenteditable_image_heightentry">' + M.util.get_string('height', 'contenteditable_image') +
                              '</label>' +
                              '<input type="text" value="" id="contenteditable_image_heightentry" size="10"/>' +
+                             '<label for="contenteditable_image_preview">' + M.util.get_string('preview', 'contenteditable_image') +
+                             '</label>' +
+                             '<img src="#" width="200" id="contenteditable_image_preview" alt="" style="display: none;"/>' +
                              '<hr/>' +
                              '<button id="openimagebrowser" data-editor="' + Y.Escape.html(elementid) + '">' +
                              M.util.get_string('browserepositories', 'contenteditable_image') +

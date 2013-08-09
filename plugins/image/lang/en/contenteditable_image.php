@@ -32,3 +32,4 @@ $string['browserepositories'] = 'Browse repositories...';
 $string['accessibilityhint'] = '<p>Web content accessibility guidelines (WCAG):<br/><ul><li><a href="http://www.w3.org/TR/WCAG20/#text-equiv" target="_blank">Text Alternatives</a></li></ul></p>';
 $string['width'] = 'Width';
 $string['height'] = 'Height';
+$string['preview'] = 'Preview';

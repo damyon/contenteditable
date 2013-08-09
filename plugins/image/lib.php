@@ -31,6 +31,7 @@ function contenteditable_image_init_editor($elementid) {
     $PAGE->requires->strings_for_js(array('createimage',
                                           'enterurl',
                                           'enteralt',
+                                          'preview',
                                           'browserepositories',
                                           'accessibilityhint',
                                           'width',
